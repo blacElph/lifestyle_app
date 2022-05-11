@@ -24,26 +24,38 @@ class _BottomNavBarState extends State<BottomNavBar> {
             height: 70,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children: [
                 IconButton(
-                  onPressed: null,
+                  onPressed: () {
+                    setState(() {
+                      currentState = 0;
+                    });
+                  },
                   icon: Icon(
                     Icons.home_outlined,
                     size: 35,
+                    color: currentState == 0 ? blue : grey,
                   ),
                 ),
                 IconButton(
-                    onPressed: null,
-                    icon: Icon(
-                      Icons.star_outline,
-                      size: 35,
-                    ))
+                  onPressed: () {
+                    setState(() {
+                      currentState = 1;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.star_outline,
+                    size: 35,
+                    color: currentState == 1 ? blue : grey,
+                  ),
+                ),
               ],
             )),
       ),
+      body: widgets[currentState],
       backgroundColor: backgroundColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: const FloatingActionButton(
         onPressed: null,
         backgroundColor: blue,
         child: Icon(Icons.add),
